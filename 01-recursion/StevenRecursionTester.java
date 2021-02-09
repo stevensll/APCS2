@@ -26,7 +26,7 @@ public class StevenRecursionTester{
     public static boolean percentError(double percentage, double e, double a){
         if(e == a) return true;
         double error = Math.abs( (a - e) / e );
-        return error <= percentage/10;
+        return error <= percentage/100;
     }
 
 }
