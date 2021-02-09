@@ -25,5 +25,22 @@ public class Recursion{
         }
         return count;
     }
+    /*
+    *@param n any non-negative value you want to take the sqrt of
+    *@return the approximate sqrt of n within a tolerance of 0.001%
+    */
+    public static double sqrt(double n){
+        return sqrt(n, n/2);
+    }
+    public static double sqrt(double n, double guess){
+        if(n == 0) return 0.0;
+        //0.001% error check statement
+        if(Math.abs((n - guess * guess)/(guess*guess) )<= 0.00001) return guess;
+        else{
+            double newGuess = (n / guess + guess) / 2;
+            //ystem.out.println(newGuess);
+            return(sqrt(n, newGuess));
+        }
+    }
 
 }
