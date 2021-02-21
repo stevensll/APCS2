@@ -6,13 +6,31 @@ public class QueensBoard {
     board = new int[size][size];
   }
 
-  private boolean AddQueen(int r, int c){
-    return false;
+  public boolean AddQueen(int r, int c){
+    //to add a queen to a square (r,c) we must check that the current square is not occupied
+      if(board[r][c] != 0) return false;
+      else{
+        //we add and we do three things: occupy the row, occupy the column, and occupy the diagonal
+        //since our board is symmetrical, we can use one for loop to take care of rows and columns
+        for(int i = 0; i < board.length;i++){
+          board[i][c]++;
+          board[r][i]++;
+          //need to add diagonals here.     
+        }
+        return true;
+      }
   }
 
   private void removeQueen(int r, int c){
   
   }
+
+  /*
+  Approach to the problem: we will fill up the board using -1, 0, and positive integers. 
+  -1 will represent queens
+  0 will represent spots that are not threatened by a queen.
+  Any positive integer represents spots that are threatened by a or multiple queens.
+  */
 
 
   /**
