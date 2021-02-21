@@ -24,7 +24,8 @@ public class QueensBoard {
         for(int i = 0; i < board.length;i++){
           board[i][c]++;
           board[r][i]++;
-           
+          if(r+i < board.length && c+i<board.length) board[r+i][c+i]++;
+          if(r-i >= 0 && c-i >=0) board[r-i][c-i]++;
           //need to add diagonals here.     
         }
         board[r][c] = -1;
@@ -75,7 +76,7 @@ public class QueensBoard {
     for(int r = 0; r < board.length; r++){
       for(int c = 0; c<board.length; c++){
         if(c == board.length) result +=board[r][c];
-        else result+=board[r][c]+" ";
+        else result+=board[r][c]+"  ";
       }
       result+="\n";
     }
