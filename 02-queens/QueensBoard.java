@@ -4,6 +4,15 @@ public class QueensBoard {
 
   public QueensBoard(int size){
     board = new int[size][size];
+    this.reset();
+  }
+  //reset method to make all values on the board to be 0
+  private void reset(){
+    for(int r = 0; r < board.length; r++){
+      for(int c = 0; c<board.length; c++){
+        board[r][c] = 0;
+      }
+    }
   }
 
   public boolean AddQueen(int r, int c){
@@ -17,6 +26,7 @@ public class QueensBoard {
           board[r][i]++;
           //need to add diagonals here.     
         }
+        board[r][c] = -1;
         return true;
       }
   }
@@ -46,10 +56,18 @@ public class QueensBoard {
     *excludes the character up to the *)
     */
   public String toString(){
-
-      
-      return null;
+    String result = "";
+    for(int r = 0; r < board.length; r++){
+      for(int c = 0; c<board.length; c++){
+        if(board[r][c] == -1) result+= "Q ";
+        else if(c == board.length) result +="_";
+        else result+="_ ";
+      }
+      result+="\n";
     }
+    
+    return result;
+  }
 
 
     /**Find the first solution configuration possible for this size board. Start by placing
