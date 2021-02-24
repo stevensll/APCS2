@@ -1,11 +1,16 @@
 public class StevenQueensTester{
     public static void main(String[] args) {
-        QueensBoard my_board = new QueensBoard(5);
-        my_board.AddQueen(2, 3);
-        my_board.AddQueen(4, 4);
-        my_board.AddQueen(3, 3);
+        int s = 8;
+        QueensBoard my_board = new QueensBoard(s);
+        for(int i = 0; i < s; i++){
+            for(int  j = 0; j < s; j++){
+                my_board.AddQueen(j,i);
+                System.out.println(my_board.debugToString());
+            }
+        }
         System.out.println(my_board);
         System.out.println(my_board.debugToString());
+
     }
 
 }
