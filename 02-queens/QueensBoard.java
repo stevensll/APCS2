@@ -108,16 +108,18 @@ public class QueensBoard {
   *        returns true when the board is solveable, and leaves the board in a solved state
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you solved a 2nd time.)
   */
-  public boolean solve(){
+  public boolean solve() throws IllegalStateException{
+    if(board.length == 0) return true;
+    if(board[0][0] != 0) throw new IllegalStateException("Board has not been reset.");
     return solve(0);
   }
-  private boolean solve(int column) throws IllegalStateException{
+  
+  private boolean solve(int column){
     //base case: if column input reaches the last column, then a queen has been placed in every column and thus is solved
     if (column == board.length) {
       System.out.println(this.toString());
       return true;
     }
-    
     //since we are recursing by column, we must check if we can make a new path in each row
     for(int row = 0; row < board.length; row++){
       if(AddQueen(row, column)){
@@ -126,11 +128,11 @@ public class QueensBoard {
              onto the next column. this is where we backtrack
           2) remove the queen added queen. we simply skip this row and move onto the next possible option.
         */
-        solve(column+1);
+        if(solve(column+1)) return true;
         removeQueen(row, column);
-      }
-    }  
-    return false;
+      }  
+    } 
+    return false; 
   }
 
 
