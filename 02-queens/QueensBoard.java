@@ -86,7 +86,7 @@ public class QueensBoard {
     return result;
   }
 
-  public String debugToString(){
+  private String debugToString(){
     String result = "";
     for(int r = 0; r < board.length; r++){
       for(int c = 0; c<board.length; c++){
@@ -109,9 +109,31 @@ public class QueensBoard {
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you solved a 2nd time.)
   */
   public boolean solve(){
-      return false;
-
+    return solve(0);
+  }
+  private boolean solve(int column) throws IllegalStateException{
+    //base case: if column input reaches the last column, then a queen has been placed in every column and thus is solved
+    if (column == board.length) {
+      System.out.println(this.toString());
+      return true;
     }
+    
+    //since we are recursing by column, we must check if we can make a new path in each row
+    for(int row = 0; row < board.length; row++){
+      if(AddQueen(row, column)){
+        /* if a queen can be placed, we can do two things: 
+          1) take that path of adding the queen, and solve by moving
+             onto the next column. this is where we backtrack
+          2) remove the queen added queen. we simply skip this row and move onto the next possible option.
+        */
+        solve(column+1);
+        removeQueen(row, column);
+      }
+    }  
+    return false;
+  }
+
+
 
     /**Find all possible solutions to this size board.
     *@return the number of solutions found, and leaves the board filled with only 0's

@@ -1,9 +1,8 @@
-import jdk.tools.jlink.resources.jlink_ja;
-
 public class StevenQueensTester{
     public static void main(String[] args) {
         int s = 8;
         QueensBoard my_board = new QueensBoard(s);
+        my_board.solve();
         // for(int i = 0; i < s; i++){
         //     for(int  j = 0; j < s; j++){
         //         my_board.AddQueen(i,j);
