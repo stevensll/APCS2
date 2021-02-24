@@ -20,7 +20,7 @@ public class QueensBoard {
     }
   }
   //O(N) call
-  public boolean AddQueen(int r, int c){
+  private boolean AddQueen(int r, int c){
     //to add a queen to a square (r,c) we must check that the current square is not occupied
       if(board[r][c] != 0) return false;
       else{
@@ -45,9 +45,19 @@ public class QueensBoard {
         return true;
       }
   }
-  
+  //O(N) call, almost the same as AddQueen
   private void removeQueen(int r, int c){
-  
+    if(board[r][c] == -1){
+      for(int i = 0; i <board.length; i++){
+        board[i][c]--;
+        board[r][i]--;
+        if(r+i < board.length && c+i<board.length) board[r+i][c+i]--;
+        if(r-i >= 0 && c-i >=0) board[r-i][c-i]--;
+        if(r+i < board.length && c-i>=0) board[r+i][c-i]--;
+        if(r-i>=0 && c+i < board.length) board[r-i][c+i]--;
+      }
+      board[r][c]=0;
+    }
   }
 
 /**
