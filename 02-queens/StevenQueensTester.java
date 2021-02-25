@@ -1,11 +1,14 @@
 public class StevenQueensTester{
     public static void main(String[] args) {
-        int s = 13;
+        int s = 12;
         QueenBoard my_board = new QueenBoard(s);
-        for(int i = 0; i < 14; i++){
-            QueenBoard test = new QueenBoard(i);
-            System.out.println("Board" +" " + i +": " + test.countSolutions());
-        }
+        System.out.println(my_board.countSolutions());
+        System.out.println(my_board);
+        // for(int i = 0; i < 14; i++){
+        //     QueenBoard test = new QueenBoard(i);
+        //     System.out.println("Board" +" " + i +": " + test.countSolutions());
+        // }
+
         // for(int i = 0; i < 8; i++){
         //     QueensBoard test = new QueensBoard(i);
         //     System.out.println("Test" +i + test.solve());

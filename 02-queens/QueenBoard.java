@@ -76,9 +76,9 @@ public class QueenBoard {
     String result = "";
     for(int r = 0; r < board.length; r++){
       for(int c = 0; c<board.length; c++){
-        if(board[r][c] == -1) result+= "Q ";
-        else if(c == board.length-1) result +="_";
-        else result+="_ ";
+        if(board[r][c] == -1) result+= "Q";
+        else result+="_";
+        if(c!=board.length-1) result+=" ";
       }
       if(r!=board.length-1){
         result+="\n";
@@ -145,9 +145,7 @@ public class QueenBoard {
   public int countSolutions() throws IllegalStateException{
     if(board.length == 0) return 1;
     if(board[0][0] != 0) throw new IllegalStateException("Board has not been reset.");
-    int n = countSolutions(0);
-    this.reset();
-    return n;
+    return countSolutions(0);
   }
 
   private int countSolutions(int column){
