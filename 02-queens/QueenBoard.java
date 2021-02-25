@@ -145,18 +145,23 @@ public class QueenBoard {
   public int countSolutions() throws IllegalStateException{
     if(board.length == 0) return 1;
     if(board[0][0] != 0) throw new IllegalStateException("Board has not been reset.");
-    return countSolutions(0,0);
-
+    int n = countSolutions(0);
+    this.reset();
+    return n;
   }
 
-  private int countSolutions(int column, int count){
+  private int countSolutions(int column){
+    int count = 0;
     //same base case
     if(column == board.length){
-      count++;
+      // System.out.println(this);
+      // System.out.println();
+      return 1;
     }
+
     for(int row = 0; row<board.length; row++){
       if(AddQueen(row, column)){
-        countSolutions(column+1,count);
+        count+=countSolutions(column+1);
         removeQueen(row, column);
       }
     }

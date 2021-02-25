@@ -1,11 +1,15 @@
 public class StevenQueensTester{
     public static void main(String[] args) {
-        int s = 1;
-        QueensBoard my_board = new QueensBoard(s);
-        for(int i = 0; i < 8; i++){
-            QueensBoard test = new QueensBoard(i);
-            System.out.println("Test" +i + test.solve());
+        int s = 13;
+        QueenBoard my_board = new QueenBoard(s);
+        for(int i = 0; i < 14; i++){
+            QueenBoard test = new QueenBoard(i);
+            System.out.println("Board" +" " + i +": " + test.countSolutions());
         }
+        // for(int i = 0; i < 8; i++){
+        //     QueensBoard test = new QueensBoard(i);
+        //     System.out.println("Test" +i + test.solve());
+        // } 
         // for(int i = 0; i < s; i++){
         //     for(int  j = 0; j < s; j++){
         //         my_board.AddQueen(i,j);
