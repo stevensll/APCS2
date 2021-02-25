@@ -77,10 +77,12 @@ public class QueenBoard {
     for(int r = 0; r < board.length; r++){
       for(int c = 0; c<board.length; c++){
         if(board[r][c] == -1) result+= "Q ";
-        else if(c == board.length) result +="_";
+        else if(c == board.length-1) result +="_";
         else result+="_ ";
       }
-      result+="\n";
+      if(r!=board.length-1){
+        result+="\n";
+      }
     }
     
     return result;
