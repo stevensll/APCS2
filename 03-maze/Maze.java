@@ -19,8 +19,18 @@ public class Maze{
     So you don't have to check for out of bounds!
   */
   public Maze(String filename) throws FileNotFoundException{
-      //COMPLETE CONSTRUCTOR
-  }
+    Scanner in = new Scanner(new File(filename));        
+    ArrayList<char[]> arrLines = new ArrayList<char[]>();
+    while(in.hasNextLine()){
+        arrLines.add(in.nextLine().toCharArray());
+    }
+    int height = arrLines.size();
+
+    maze = new char[height][];
+    for(int i = 0; i < height; i++){
+        maze[i] = arrLines.get(i);
+    }  
+}
 
   private void wait(int millis){
        try {
@@ -47,7 +57,14 @@ public class Maze{
    It should look like the text file with some characters replaced.
   */
   public String toString(){
-          return "WRITE THIS METHOD";
+    String result = "";
+    for(int row = 0; row < maze.length; row++){
+        for(int column = 0; column < maze[0].length; column++){
+            result+=maze[row][column];
+        }
+        result+="\n";
+    }
+    return result;
   }
 
   /*Wrapper Solve Function returns the helper function
