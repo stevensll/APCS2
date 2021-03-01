@@ -78,6 +78,18 @@ public class Maze{
           }
           //start solving at the location of the s.
           //return solve(???,???);
+          //gets the location of start
+          int row = 0;
+          int column = 0;
+          for(int i = 0; i < maze.length;i++){
+            for(int j = 0; j <maze[0].length; j++){
+              if(maze[i][j] == 'S'){
+                row = i;
+                column = j;
+              }
+            }
+          }
+          System.out.println(row + ", " + column);
           return 0;
   }
 
@@ -106,4 +118,17 @@ public class Maze{
       //COMPLETE SOLVE
       return -1; //so it compiles
   }
+  // returns true if we can move the next available square. false otherwise.
+  public boolean moveNext(int row, int col){
+    if(maze[row][col] =='#') return false;
+    else {
+      maze[row][col] = '@';
+      return true;
+    }
+  }
+
+  private void moveBack(int row, int col){
+
+  }
+
 }
