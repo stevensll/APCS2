@@ -7,6 +7,8 @@ public class StevenTester {
             System.out.println(test.moveNext(7, i));
         }
         System.out.println(test.moveNext(8, 13));
+        test.moveBack(7, 12);
+        test.moveBack(7, 11);
         System.out.println(test.solve());
         System.out.println(test);
     }

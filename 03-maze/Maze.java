@@ -76,8 +76,6 @@ public class Maze{
           if(animate){
             clearTerminal();
           }
-          //start solving at the location of the s.
-          //return solve(???,???);
           //gets the location of start
           int row = 0;
           int column = 0;
@@ -89,8 +87,7 @@ public class Maze{
               }
             }
           }
-          System.out.println(row + ", " + column);
-          return 0;
+          return solve(row,column);
   }
 
   /*
@@ -114,7 +111,10 @@ public class Maze{
           System.out.println(this);
           wait(50);
       }
-
+      int count = 0;
+      if(maze[row][col] == 'E'){
+        return count;
+      }
       //COMPLETE SOLVE
       return -1; //so it compiles
   }
@@ -127,8 +127,7 @@ public class Maze{
     }
   }
 
-  private void moveBack(int row, int col){
-
+  public void moveBack(int row, int col){
+    maze[row][col] = ' ';
   }
-
 }
