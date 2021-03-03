@@ -24,12 +24,12 @@ public class StevenTester {
         // System.out.println(dataVari.solve());
         char [][] gen1 = makeMaze(30,60);
         char [][] gen2 = makeMaze(10,15);
-        System.out.println(MazeGenerator.toString(gen1));
-        System.out.println(MazeGenerator.toString(gen2));
-        MazeGenerator.generate(gen1, 0, 0, 5, 5);
-        System.out.println(MazeGenerator.toString(gen1));
+        // System.out.println(MazeGenerator.toString(gen1));
+        // System.out.println(MazeGenerator.toString(gen2));
+        // MazeGenerator.generate(gen1, 0, 0, 5, 5);
+        // System.out.println(MazeGenerator.toString(gen1));
         MazeGenerator.generate(gen2, 0, 0, 2, 5);
-        System.out.println(MazeGenerator.toString(gen2));
+        System.out.println(colorize(MazeGenerator.toString(gen2)));
     }
     private static char[][] makeMaze(int row, int col){
         char maze[][] = new char[row][col]; 
@@ -39,5 +39,10 @@ public class StevenTester {
             }
         }
         return maze;
+    }
+    public static String colorize(String maze){
+        String result = maze.replaceAll(" ", "\033[45m\033[37mP\033[0m");
+        result.replaceAll("#", "\033[44m\033[37m \033[0m");
+        return result;
     }
 }
