@@ -107,7 +107,6 @@ public class Maze{
   */
   private int solve(int row, int col, int count){ //you can add more parameters since this is private
       //automatic animation! You are welcome.
-      animate = true;
       if(animate){
           gotoTop();
           System.out.println(this);
@@ -139,7 +138,7 @@ public class Maze{
       return -1;
   }
   // returns true if we can move to the next available square. false otherwise.
-  public boolean moveNext(int row, int col){
+  private boolean moveNext(int row, int col){
     if(maze[row][col] == 'E') return true;
     if(maze[row][col] !=' ') return false;
     else {
@@ -148,7 +147,7 @@ public class Maze{
     }
   }
 
-  public void moveBack(int row, int col){
+  private void moveBack(int row, int col){
     maze[row][col] = '.';
   }
 }

@@ -12,7 +12,14 @@ public class StevenTester {
         // System.out.println(test.solve());
         // System.out.println(test);
         Maze data1 = new Maze("data1.dat");
+        Maze data2 = new Maze("data2.dat");
+        Maze data3 = new Maze("data3.dat");
+        Maze data5 = new Maze("data5.dat");
+        data5.setAnimate(true);
         System.out.println(data1.solve());
+        System.out.println(data2.solve());
+        System.out.println(data3.solve());
+        System.out.println(data5.solve());
 
     }
     
