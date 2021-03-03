@@ -87,7 +87,7 @@ public class Maze{
               }
             }
           }
-          return solve(row,column);
+          return solve(row,column,0);
   }
 
   /*
@@ -104,21 +104,38 @@ public class Maze{
       All visited spots that were not part of the solution are changed to '.'
       All visited spots that are part of the solution are changed to '@'
   */
-  private int solve(int row, int col){ //you can add more parameters since this is private
+  private int solve(int row, int col, int count){ //you can add more parameters since this is private
       //automatic animation! You are welcome.
+      animate = true;
       if(animate){
           gotoTop();
           System.out.println(this);
           wait(50);
       }
-      int count = 0;
+      //base case
       if(maze[row][col] == 'E'){
         return count;
       }
-      //COMPLETE SOLVE
-      return -1; //so it compiles
+      // if(maze[row][col] == 'S') maze[row][col] = '@';
+      if(moveNext(row+1,col)){
+        if(solve(row+1,col,count++) != -1) return count;
+        moveBack(row+1, col);
+      }
+      if(moveNext(row-1,col)){
+        if(solve(row-1,col,count++) != -1) return count;
+        moveBack(row-1, col);
+      }
+      if(moveNext(row,col+1)){
+        if(solve(row,col+1,count++) != -1) return count;
+        moveBack(row, col+1);
+      }
+      if(moveNext(row,col-1)){
+        if(solve(row,col-1,count++) != -1) return count;
+        moveBack(row, col-1);
+      }
+      return -1;
   }
-  // returns true if we can move the next available square. false otherwise.
+  // returns true if we can move to the next available square. false otherwise.
   public boolean moveNext(int row, int col){
     if(maze[row][col] =='#') return false;
     else {
