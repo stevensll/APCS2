@@ -4,12 +4,32 @@ public class MazeGenerator {
 
     
     public static void generate(char[][]maze, int rows, int cols,int startrow, int startcol){
+        /*utilize a new arraylist of int[] to store the possible cominbations of diretions to go. 
+        use collections.shuffle to randomize the order of the arraylist everytime.
+        */
+        ArrayList<int[]> combinations = new ArrayList<int[]>();
+        combinations.add(new int[]{1,0}); //moving down
+        combinations.add(new int[]{-1,0});//moving up
+        combinations.add(new int[]{0,1});//moving right
+        combinations.add(new int[]{0,-1});//moving left
+        Collections.shuffle(combinations);
+        /*
+        if we can carve the maze, we carve. we move onto the next possible direction. NO directions can be carved,
+        then we know we have reached a spot which we cannot carve and must end.
+        randomization comes from which carve path we take first!
+        */
+        for(int i = 0; i <combinations.size();i++){
+            if(nextSquare(maze, startrow+combinations.get(i)[0], startcol+combinations.get(i)[1])){
+                maze[startrow+combinations.get(i)[0]][startcol+combinations.get(i)[1]] = ' ';
+                generate(maze, rows, cols, startrow+combinations.get(i)[0], startcol+combinations.get(i)[1]);
+            }
+        }
 
     }
     /*nextSquare checks if the input square can be carved. it must satisfy
       the condition that the there are less than 2 Neighbors (up/down/left/right) that are already carved.
     */
-    public static boolean nextSquare(char[][]maze, int row, int col){
+    private static boolean nextSquare(char[][]maze, int row, int col){
         int count_neighbors = 0;
         //out of bounds check
         if (row >= maze.length-1 || row <= 0) return false;

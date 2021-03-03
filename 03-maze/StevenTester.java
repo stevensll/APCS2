@@ -23,8 +23,9 @@ public class StevenTester {
         // Maze dataVari = new Maze("dataVari.dat");
         // System.out.println(dataVari.solve());
         char [][] gen1 = MazeGenerator.readMaze("gen1.dat");
+        MazeGenerator.generate(gen1, 0, 0, 5, 5);
         System.out.println(MazeGenerator.toString(gen1));
-        System.out.println(MazeGenerator.nextSquare(gen1, 2, 2));
+
     }
     
 }
