@@ -63,7 +63,7 @@ public class Maze{
         for(int column = 0; column < maze[0].length; column++){
             result+=maze[row][column];
         }
-        result+="\n";
+        if(row != maze.length-1) result+="\n";
     }
     return result;
   }
