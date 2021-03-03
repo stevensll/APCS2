@@ -22,10 +22,22 @@ public class StevenTester {
         // System.out.println(data5.solve());
         // Maze dataVari = new Maze("dataVari.dat");
         // System.out.println(dataVari.solve());
-        char [][] gen1 = MazeGenerator.readMaze("gen1.dat");
+        char [][] gen1 = makeMaze(30,60);
+        char [][] gen2 = makeMaze(10,15);
+        System.out.println(MazeGenerator.toString(gen1));
+        System.out.println(MazeGenerator.toString(gen2));
         MazeGenerator.generate(gen1, 0, 0, 5, 5);
         System.out.println(MazeGenerator.toString(gen1));
-
+        MazeGenerator.generate(gen2, 0, 0, 2, 5);
+        System.out.println(MazeGenerator.toString(gen2));
     }
-    
+    private static char[][] makeMaze(int row, int col){
+        char maze[][] = new char[row][col]; 
+        for(int i = 0; i < row; i++){
+            for(int j = 0; j < col; j++){
+                maze[i][j] = '#';
+            }
+        }
+        return maze;
+    }
 }

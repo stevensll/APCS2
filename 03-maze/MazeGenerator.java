@@ -12,12 +12,12 @@ public class MazeGenerator {
         combinations.add(new int[]{-1,0});//moving up
         combinations.add(new int[]{0,1});//moving right
         combinations.add(new int[]{0,-1});//moving left
-        Collections.shuffle(combinations);
         /*
         if we can carve the maze, we carve. we move onto the next possible direction. NO directions can be carved,
         then we know we have reached a spot which we cannot carve and must end.
         randomization comes from which carve path we take first!
         */
+        Collections.shuffle(combinations);
         for(int i = 0; i <combinations.size();i++){
             if(nextSquare(maze, startrow+combinations.get(i)[0], startcol+combinations.get(i)[1])){
                 maze[startrow+combinations.get(i)[0]][startcol+combinations.get(i)[1]] = ' ';
@@ -34,8 +34,7 @@ public class MazeGenerator {
         //out of bounds check
         if (row >= maze.length-1 || row <= 0) return false;
         if (col >= maze[0].length-1 || col <= 0) return false;
-        //if our neighbor
-        // if (maze[row][col]== ' ') return false;
+        if (maze[row][col]== ' ') return false;
         if (maze[row-1][col] == ' ') count_neighbors++;  //checks up
         if (maze[row+1][col]== ' ') count_neighbors++;   //checks down
         if (maze[row][col+1]== ' ') count_neighbors++;   //checks right
