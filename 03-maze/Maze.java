@@ -19,6 +19,7 @@ public class Maze{
     So you don't have to check for out of bounds!
   */
   public Maze(String filename) throws FileNotFoundException{
+    animate = false;
     Scanner in = new Scanner(new File(filename));        
     ArrayList<char[]> arrLines = new ArrayList<char[]>();
     while(in.hasNextLine()){
@@ -118,26 +119,22 @@ public class Maze{
       }
       // if(maze[row][col] == 'S') maze[row][col] = '@';
       if(moveNext(row+1,col)){
-        if(solve(row+1,col,count++) != -1) return count;
-        moveBack(row+1, col);
+        if(solve(row+1,col,count++) == -1) moveBack(row+1, col);
       }
       if(moveNext(row-1,col)){
-        if(solve(row-1,col,count++) != -1) return count;
-        moveBack(row-1, col);
+        if(solve(row-1,col,count++) == -1) moveBack(row-1, col);
       }
       if(moveNext(row,col+1)){
-        if(solve(row,col+1,count++) != -1) return count;
-        moveBack(row, col+1);
+        if(solve(row,col+1,count++) == -1) moveBack(row, col+1);
       }
       if(moveNext(row,col-1)){
-        if(solve(row,col-1,count++) != -1) return count;
-        moveBack(row, col-1);
+        if(solve(row,col-1,count++) == -1) moveBack(row, col-1);
       }
       return -1;
   }
   // returns true if we can move to the next available square. false otherwise.
   public boolean moveNext(int row, int col){
-    if(maze[row][col] =='#') return false;
+    if(maze[row][col] =='#' || maze[row][col]=='.') return false;
     else {
       maze[row][col] = '@';
       return true;
@@ -145,6 +142,6 @@ public class Maze{
   }
 
   public void moveBack(int row, int col){
-    maze[row][col] = ' ';
+    maze[row][col] = '.';
   }
 }
