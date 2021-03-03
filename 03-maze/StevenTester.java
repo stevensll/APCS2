@@ -12,8 +12,7 @@ public class StevenTester {
         // System.out.println(test.solve());
         // System.out.println(test);
         Maze data1 = new Maze("data1.dat");
-        System.out.println(data1);
-        data1.solve();
+        System.out.println(data1.solve());
 
     }
     

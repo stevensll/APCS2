@@ -117,24 +117,31 @@ public class Maze{
       if(maze[row][col] == 'E'){
         return count;
       }
-      // if(maze[row][col] == 'S') maze[row][col] = '@';
-      if(moveNext(row+1,col)){
-        if(solve(row+1,col,count++) == -1) moveBack(row+1, col);
-      }
+      if(maze[row][col] == 'S') maze[row][col] = '@';
+      
+     if(moveNext(row+1,col)){
+        int current = solve(row+1, col, count+1);
+        if(current !=-1) return current;
+      } 
       if(moveNext(row-1,col)){
-        if(solve(row-1,col,count++) == -1) moveBack(row-1, col);
+        int current = solve(row-1, col, count+1);
+        if(current !=-1) return current; 
       }
       if(moveNext(row,col+1)){
-        if(solve(row,col+1,count++) == -1) moveBack(row, col+1);
+        int current = solve(row, col+1, count+1);
+        if(current !=-1) return current;
       }
       if(moveNext(row,col-1)){
-        if(solve(row,col-1,count++) == -1) moveBack(row, col-1);
+        int current = solve(row, col-1, count+1);
+        if(current !=-1) return current;
       }
+      moveBack(row, col);
       return -1;
   }
   // returns true if we can move to the next available square. false otherwise.
   public boolean moveNext(int row, int col){
-    if(maze[row][col] =='#' || maze[row][col]=='.') return false;
+    if(maze[row][col] == 'E') return true;
+    if(maze[row][col] !=' ') return false;
     else {
       maze[row][col] = '@';
       return true;
