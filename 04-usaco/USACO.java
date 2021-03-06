@@ -36,7 +36,7 @@ public class USACO{
         }
         return sum_depth * area;
     }
-    public static void stomp(int[][] lake, int R_s, int C_s, int D_s){
+    private static void stomp(int[][] lake, int R_s, int C_s, int D_s){
         R_s-=1;
         C_s-=1; //converts both coordinates for first row = 0 in a java array;
         int maxE = 0;
@@ -60,7 +60,8 @@ public class USACO{
             final int M = in.nextInt();
             final int T = in.nextInt();
         
-        int[][] pasture = new int[N][M];
+        // scan in our pasture
+        long [][] pasture = new long[N][M];
         in.nextLine();
         for(int i = 0; i < N; i++){
             String line = in.nextLine();
@@ -69,12 +70,52 @@ public class USACO{
                 else pasture[i][j] = 0;
             }
         }
-        System.out.println(toString(pasture));
+        //mark the starting position
+        pasture[in.nextInt()-1][in.nextInt()-1] = 1;
+        System.out.println("\n"+toStringLong(pasture));
+        updatePaths(pasture, 3);
+        // System.out.println(toStringLong(pasture));
         long sol = 0;
-        return sol;
+        return sol; 
+    }
+    private static void updatePaths(long[][] pasture, int T){
+        while(T > 0){
+            long [][]pastureNew = new long[pasture.length][pasture[0].length];
+            for(int i =0; i < pasture.length; i++){
+                for(int j = 0; j < pasture[0].length; j++){
+                    /*loop through every square on new pasture,  if it has no value update it by taking the sum
+                    of its neighbors on the pasture.
+                    */
+                    if(pasture[i][j] == -1) pastureNew[i][j] = -1;
+                    else if(pasture[i][j] == 0){
+                        if(i+1 <=pasture.length && pasture[i+1][j]!=-1) pastureNew[i][j]+=pasture[i+1][j];
+                        if(i-1 >=0 && pasture[i-1][j]!=-1) pastureNew[i][j]+=pasture[i-1][j];
+                        if(j+1 <=pasture.length && pasture[i][j+1]!=-1) pastureNew[i][j]+=pasture[i][j+1];
+                        if(j-1 >=0 && pasture[i][j-1]!=-1) pastureNew[i][j]+=pasture[i][j-1];
+
+                    }
+                    else if(pasture[i][j] > 0) pastureNew[i][j] = 0;
+                }
+            }
+            System.out.println("\n" +toStringLong(pastureNew));
+            pasture = pastureNew;
+            T--;
+        }
     }
 
+
+
     public static String toString(int[][] arr){
+        String result = "";
+        for(int row = 0; row < arr.length; row++){
+            for(int column = 0; column < arr[0].length; column++){
+                result+=" "+arr[row][column];
+            }
+            if(row != arr.length-1) result+="\n";
+        }
+        return result;
+    }
+    public static String toStringLong(long[][] arr){
         String result = "";
         for(int row = 0; row < arr.length; row++){
             for(int column = 0; column < arr[0].length; column++){
