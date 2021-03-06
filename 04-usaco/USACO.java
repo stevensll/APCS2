@@ -13,18 +13,39 @@ public class USACO{
             final int instructions = in.nextInt();
             final int area = 5184;
         // System.out.println(r + " " + c + " " + target_elevation + " " + instructions );
+        // read the lake in
         int[][] lake = new int[r][c];
         for(int i = 0; i < r; i++){
-            in.nextLine();
             for(int j = 0; j < c; j++){
                 lake[i][j] = in.nextInt();
             }
+            in.nextLine();
         }
         // System.out.println(toString(lake));
+        stomp(lake, 1, 4, 4);
+        System.out.println(toString(lake));
 
         int sol = 0;    
         return sol;
     }
+    public static void stomp(int[][] lake, int R_s, int C_s, int D_s){
+        R_s-=1;
+        C_s-=1; //converts both coordinates for first row = 0 in a java array;
+        int maxE = 0;
+        for(int i = R_s; i < R_s+3; i++){
+            for(int j = C_s; j < C_s+3; j++){
+                if(lake[i][j] > maxE) maxE = lake[i][j];
+            }
+        }
+        maxE-=D_s;
+        for(int i = R_s; i < R_s+3; i++){
+            for(int j = C_s; j < C_s+3; j++){
+                if(lake[i][j] > maxE) lake[i][j] = maxE;
+            }
+        }
+    }
+
+
     public static String toString(int[][] arr){
         String result = "";
         for(int row = 0; row < arr.length; row++){
