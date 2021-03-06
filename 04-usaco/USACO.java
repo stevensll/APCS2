@@ -53,6 +53,26 @@ public class USACO{
         }
     }
 
+    public static long silver(String filename) throws FileNotFoundException{
+        Scanner in = new Scanner(new File (filename));
+        //constants
+            final int N = in.nextInt();
+            final int M = in.nextInt();
+            final int T = in.nextInt();
+        
+        int[][] pasture = new int[N][M];
+        in.nextLine();
+        for(int i = 0; i < N; i++){
+            String line = in.nextLine();
+            for(int j = 0; j < M; j++){
+                if (line.charAt(j) == '*') pasture[i][j] = -1;
+                else pasture[i][j] = 0;
+            }
+        }
+        System.out.println(toString(pasture));
+        long sol = 0;
+        return sol;
+    }
 
     public static String toString(int[][] arr){
         String result = "";
@@ -63,10 +83,6 @@ public class USACO{
             if(row != arr.length-1) result+="\n";
         }
         return result;
-    }
-    public static long silver(String filename) throws FileNotFoundException{
-        int sol = 0;
-        return sol;
     }
 }
 
