@@ -72,13 +72,12 @@ public class USACO{
         }
         //mark the starting position
         pasture[in.nextInt()-1][in.nextInt()-1] = 1;
-        System.out.println("\n"+toStringLong(pasture));
-        updatePaths(pasture, 3);
+        // System.out.println("\n"+toStringLong(pasture));
+        pasture = updatePaths(pasture, T);
         // System.out.println(toStringLong(pasture));
-        long sol = 0;
-        return sol; 
+        return pasture[in.nextInt()-1][in.nextInt()-1];
     }
-    private static void updatePaths(long[][] pasture, int T){
+    private static long[][] updatePaths(long[][] pasture, int T){
         while(T > 0){
             long [][]pastureNew = new long[pasture.length][pasture[0].length];
             for(int i =0; i < pasture.length; i++){
@@ -88,19 +87,21 @@ public class USACO{
                     */
                     if(pasture[i][j] == -1) pastureNew[i][j] = -1;
                     else if(pasture[i][j] == 0){
-                        if(i+1 <=pasture.length && pasture[i+1][j]!=-1) pastureNew[i][j]+=pasture[i+1][j];
+                        if(i+1 <pasture.length && pasture[i+1][j]!=-1) pastureNew[i][j]+=pasture[i+1][j];
                         if(i-1 >=0 && pasture[i-1][j]!=-1) pastureNew[i][j]+=pasture[i-1][j];
-                        if(j+1 <=pasture.length && pasture[i][j+1]!=-1) pastureNew[i][j]+=pasture[i][j+1];
+                        if(j+1 <pasture[0].length && pasture[i][j+1]!=-1) pastureNew[i][j]+=pasture[i][j+1];
                         if(j-1 >=0 && pasture[i][j-1]!=-1) pastureNew[i][j]+=pasture[i][j-1];
 
-                    }
+                    }                   
                     else if(pasture[i][j] > 0) pastureNew[i][j] = 0;
                 }
             }
-            System.out.println("\n" +toStringLong(pastureNew));
             pasture = pastureNew;
+            // System.out.println("\n" +toStringLong(pasture));
             T--;
         }
+        return pasture;
+        // System.out.println("\n" +toStringLong(pasture));
     }
 
 
