@@ -9,9 +9,10 @@ public class USACO{
         //constants
             final int r = in.nextInt();
             final int c = in.nextInt();
-            int target_elevation = in.nextInt();
+            final int target_elevation = in.nextInt();
             final int instructions = in.nextInt();
             final int area = 5184;
+            int sum_depth = 0;
         // System.out.println(r + " " + c + " " + target_elevation + " " + instructions );
         // read the lake in
         int[][] lake = new int[r][c];
@@ -22,11 +23,18 @@ public class USACO{
             in.nextLine();
         }
         // System.out.println(toString(lake));
-        stomp(lake, 1, 4, 4);
-        System.out.println(toString(lake));
-
-        int sol = 0;    
-        return sol;
+        // run stomp for the amount of input instructions
+        for(int i = 0; i < instructions; i++){
+            stomp(lake, in.nextInt(), in.nextInt(), in.nextInt());
+        }
+        // System.out.println("\n" +toString(lake));
+        // last loop through the array, only add to depth if elevation is below the target elevation(think about this physically)
+        for(int i = 0; i < r; i++){
+            for(int j = 0; j < c; j++){
+                if(target_elevation > lake[i][j]) sum_depth+=(target_elevation-lake[i][j]);
+            }
+        }
+        return sum_depth * area;
     }
     public static void stomp(int[][] lake, int R_s, int C_s, int D_s){
         R_s-=1;
