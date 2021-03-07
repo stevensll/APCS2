@@ -1,6 +1,5 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class USACO{
@@ -106,7 +105,7 @@ public class USACO{
 
 
 
-    public static String toString(int[][] arr){
+    private static String toString(int[][] arr){
         String result = "";
         for(int row = 0; row < arr.length; row++){
             for(int column = 0; column < arr[0].length; column++){
@@ -116,7 +115,7 @@ public class USACO{
         }
         return result;
     }
-    public static String toStringLong(long[][] arr){
+    private static String toStringLong(long[][] arr){
         String result = "";
         for(int row = 0; row < arr.length; row++){
             for(int column = 0; column < arr[0].length; column++){
