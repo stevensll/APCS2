@@ -15,18 +15,35 @@ public class Preliminary{
     public static int partition( int [] data, int start, int end){
         Random gen = new Random();
         int pivot = gen.nextInt(end-start+1) + start;
-        int loSide = start;
-        int hiSide = end-1;
-
+        // System.out.println(pivot);
         //first move the pivot to the end
         int temp = data[end];
         data[end] = data[pivot];
         data[pivot] = temp;
         pivot = end;
-        System.out.println(Arrays.toString(data));
+        // System.out.println(Arrays.toString(data));
+        //use j to track when to increment as we loop through i
+        int j = start -1;
         for(int i = start; i < end; i++){
-            
+            /*if our current value is less than our pivot, we increment j and swap data[j] and data[i]
+            this makes sure that we are always moving elements towards the right if they're less than our pivot
+            */
+            if(data[i] <= data[pivot]) {
+                j++;
+                int swapTemp = data[j];
+                data[j] = data[i];
+                data[i] = swapTemp;
+            }
+            // System.out.println(j);
+            // System.out.println(Arrays.toString(data));
+
         }
+        // at the end of our loop, we swap pivot and data[j+1]
+        int lastSwap = data[j+1];
+        data[j+1] = data[pivot];
+        data[pivot] = lastSwap;
+        pivot = j+1;
+        System.out.println(Arrays.toString(data));
         return pivot;
     }
 }
