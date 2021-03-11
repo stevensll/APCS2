@@ -35,7 +35,6 @@ public class Preliminary{
                 data[i] = swapTemp;
             }
             // System.out.println(j);
-            // System.out.println(Arrays.toString(data));
 
         }
         // at the end of our loop, we swap pivot and data[j+1]
