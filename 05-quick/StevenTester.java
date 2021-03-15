@@ -13,13 +13,16 @@ public class StevenTester {
         // // System.out.println(partitionCheck(dataBackwards));
         // // System.out.println(partitionCheck(dataRandom));
         // // System.out.println(partitionCheck(dataSorted));
-        // // System.out.println(partitionCheck(dataBig));
-        int[] test = arrGen(100, "random", 100);
-        System.out.println(Arrays.toString(test));
+        // System.out.println(partitionCheck(dataBig));
+        // int[] test = arrGen(100, "random", 100);
+        // System.out.println(Arrays.toString(test));
+        int[] ary  = {2, 10, 15, 23, 0,  5};
+        int[] select = arrGen(100, "sorted", 100);
+        System.out.println(selectCheck(select));
     }
     public static int[] arrGen(int size, String type, int bound){
         Random gen = new Random();
-        bound = 10000; //by deafult element bound is 10e4
+        // bound = 10000; //by deafult element bound is 10e4
         int [] arr  = new int[size];
         for(int i = 0; i < size; i++){
             if(type.equals("binary")) arr[i] = gen.nextInt(2);
@@ -37,8 +40,18 @@ public class StevenTester {
         }
         return arr;
     }
-
-
+    public static boolean selectCheck(int arr[]){
+        int [] copy = Arrays.copyOf(arr,arr.length);
+        Arrays.sort(copy);
+        for(int i = 0; i < arr.length; i++){
+            if(!(copy[i] == Quick.quickselect(arr, i))){
+                System.out.println("fail");
+                System.out.println(Arrays.toString(arr));
+                return false;
+            }
+        }
+        return true;
+    }
     public static boolean partitionCheck(int arr[]){
         int pivot = Quick.partition(arr, 0, arr.length-1);
         for(int i = 0; i < arr.length; i++){

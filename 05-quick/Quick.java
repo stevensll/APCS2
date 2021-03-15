@@ -38,10 +38,20 @@ public class Quick {
     *@param k is 0 to data.length-1 inclusive
     *@postcondition The array can be modified. (If we did not want to modify the array, we could make a copy before we lo the process)
     */
-    public static int quickselect(int []data, int k){ 
-        
-        
-        
-        return k;
+    public static int quickselect(int []data, int k){
+        int left = 0;
+        int right = data.length-1; 
+        while(left<=right){
+            int pivot = partition(data,left,right);
+            /*after partitioning our data, we check where k is relative to our pivot.
+            then we partition the specific side of the modified array and repeat until
+            we arrive at a point where the left side = right side (or we are looking at 1 element)
+            */
+            if (pivot == k) return data[k];
+            else if (k > pivot) left = pivot+1;
+            else if (k < pivot) right = pivot-1;
+        }
+        return -1;
     }
+
 }
