@@ -3,24 +3,39 @@ import java.util.Collections;
 import java.util.Random;
 public class StevenTester {
     public static void main(String[] args) {
-        // int [] dataRandom = new int[]{2,3,3,11,11,5,7,2};// size 8
-        // int [] dataBackwards =new int[]{9,8,7,6,5,4,3,2};
-        // int [] dataSorted =new int[]{1,2,3,4,5,6,7,8};
-        // int [] dataBig = new int[]{999,992,991,2,3,9,10,0,5,7,2,992,991,999};
-        // // System.out.println(Arrays.toString(new int[]{0,1,2,3,4,5,6,7}));
-        // // System.out.println(Quick.partition(dataRandom,0, 7));
-        // // System.out.println(Arrays.toString(dataRandom));
-        // // System.out.println(partitionCheck(dataBackwards));
-        // // System.out.println(partitionCheck(dataRandom));
-        // // System.out.println(partitionCheck(dataSorted));
-        // System.out.println(partitionCheck(dataBig));
-        // int[] test = arrGen(100, "random", 100);
-        // System.out.println(Arrays.toString(test));
-        int[] ary  = {2, 10, 15, 23, 0, 5};
-        int[] select = arrGen(100, "sorted", 100);
-        Quick.quicksort(select);
-        System.out.println(Arrays.toString(select));
-        // System.out.println(selectCheck(select));
+        if(args[0].equals("auto")){
+            int size = 10000000;
+            int[]random = arrGen(size, "random", 1000);
+            int[]sorted = arrGen(size, "sorted", 1000);
+            int[]reversed = arrGen(size, "reversed", 1000);
+            int[]binary = arrGen(size, "binary", 1000);
+            int[]equal = arrGen(size, "equal", 1000);
+            sortcheck(random);
+            sortcheck(sorted);
+            sortcheck(reversed);
+            sortcheck(binary);
+            sortcheck(equal);
+        } else {
+            int size = Integer.parseInt(args[0]);
+            String type = args[1];
+            int[]test = arrGen(size, type, 1000);
+            if(sortcheck(test)){
+                System.out.println("good");
+            } else {
+                System.out.println("fail");
+            }
+        }
+    }
+    public static boolean sortcheck(int[] data){
+        int [] copy = Arrays.copyOf(data,data.length);
+        Arrays.sort(copy);
+        Quick.quicksort(data);
+        if(!Arrays.equals(copy,data)){
+            System.out.println(copy);
+            System.out.println(data);
+            return false;
+        }
+        return true;
     }
     public static int[] arrGen(int size, String type, int bound){
         Random gen = new Random();
@@ -56,7 +71,7 @@ public class StevenTester {
         return true;
     }
     public static boolean partitionCheck(int arr[]){
-        int pivot = Quick.partition(arr, 0, arr.length-1);
+        int pivot = Preliminary.partition(arr, 0, arr.length-1);
         for(int i = 0; i < arr.length; i++){
             if(i < pivot){
                 if(!(arr[i] <= arr[pivot])){

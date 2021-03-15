@@ -24,15 +24,22 @@ public class Preliminary{
         // System.out.println(Arrays.toString(data));
         //use j to track when to increment as we loop through i
         int j = start -1;
+        boolean left = true;
         for(int i = start; i < end; i++){
             /*if our current value is less than our pivot, we increment j and swap data[j] and data[i]
             this makes sure that we are always moving elements towards the right if they're less than our pivot
             */
+            //new condition: if values are the same, 50/50 chance of swapping them.
             if(data[i] <= data[pivot]) {
-                j++;
-                int swapTemp = data[j];
-                data[j] = data[i];
-                data[i] = swapTemp;
+                if(data[i] == data[pivot]&&left){
+                    left = false;
+                } else {
+                    left = true;
+                    j++;
+                    int swapTemp = data[j];
+                    data[j] = data[i];
+                    data[i] = swapTemp;    
+                }
             }
             // System.out.println(j);
 

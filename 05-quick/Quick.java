@@ -1,6 +1,6 @@
 import java.util.*;
 public class Quick {
-    public static int partition(int[]data ,int lo, int hi){
+    private static int partition(int[]data ,int lo, int hi){
         Random gen = new Random();
         int pivot = gen.nextInt(hi-lo+1) + lo;
         //first move the pivot to the hi
