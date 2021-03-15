@@ -42,7 +42,7 @@ public class Preliminary{
         data[j+1] = data[pivot];
         data[pivot] = lastSwap;
         pivot = j+1;
-        System.out.println(Arrays.toString(data));
+        // System.out.println(Arrays.toString(data));
         return pivot;
     }
 }
