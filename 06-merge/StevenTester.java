@@ -3,28 +3,35 @@ import java.util.Collections;
 import java.util.Random;
 public class StevenTester {
     public static void main(String[] args) {
-        if(args[0].equals("auto")){
-            int size = 10000000;
-            int[]random = arrGen(size, "random", 1000);
-            int[]sorted = arrGen(size, "sorted", 1000);
-            int[]reversed = arrGen(size, "reversed", 1000);
-            int[]binary = arrGen(size, "binary", 1000);
-            int[]equal = arrGen(size, "equal", 1000);
-            sortcheck(random);
-            sortcheck(sorted);
-            sortcheck(reversed);
-            sortcheck(binary);
-            sortcheck(equal);
-        } else {
-            int size = Integer.parseInt(args[0]);
-            String type = args[1];
-            int[]test = arrGen(size, type, 1000);
-            if(sortcheck(test)){
-                System.out.println("good");
-            } else {
-                System.out.println("fail");
-            }
-        }
+        int[] test = new int[7];
+        int[] temp = new int[]{1,3,5,2,4,6};
+        int[] t2 = new int[]{2,2,2,3,1,2,3};
+        int[] t3 = new int[]{2,2,2,2,2,2};
+        int[] temp2= new int[]{2,4,6,1,3,5};
+        int[] temp3= new int[]{2,2,2,7,1,3,5};
+        Merge.merge(test, temp3, 0, 6);
+        // if(args[0].equals("auto")){
+        //     int size = 10000000;
+        //     int[]random = arrGen(size, "random", 1000);
+        //     int[]sorted = arrGen(size, "sorted", 1000);
+        //     int[]reversed = arrGen(size, "reversed", 1000);
+        //     int[]binary = arrGen(size, "binary", 1000);
+        //     int[]equal = arrGen(size, "equal", 1000);
+        //     sortcheck(random);
+        //     sortcheck(sorted);
+        //     sortcheck(reversed);
+        //     sortcheck(binary);
+        //     sortcheck(equal);
+        // } else {
+        //     int size = Integer.parseInt(args[0]);
+        //     String type = args[1];
+        //     int[]test = arrGen(size, type, 1000);
+        //     if(sortcheck(test)){
+        //         System.out.println("good");
+        //     } else {
+        //         System.out.println("fail");
+        //     }
+        // }
     }
     public static boolean sortcheck(int[] data){
         int [] copy = Arrays.copyOf(data,data.length);
