@@ -3,36 +3,36 @@ import java.util.Collections;
 import java.util.Random;
 public class StevenTester {
     public static void main(String[] args) {
-        int[] test = new int[7];
-        int[] temp = new int[]{1,3,5,2,4,6};
-        int[] temp2 = new int[]{38,27,43,3,9,82,10};
-        // Merge.merge(test, temp2, 0, 2);
-        // int[] test2 = new int[]{7,1,5,4,6,2};
-        Merge.mergesort(temp2);
-        System.out.println(Arrays.toString(temp2));
+        // int[] test = new int[7];
+        // int[] temp = new int[]{1,3,5,2,4,6};
+        // int[] temp2 = new int[]{38,27,43,3,9,82,10};
+        // // Merge.merge(test, temp2, 0, 2);
+        // // int[] test2 = new int[]{7,1,5,4,6,2};
+        // Merge.mergesort(temp2);
+        // System.out.println(Arrays.toString(temp2));
 
-        // if(args[0].equals("auto")){
-        //     int size = 10000000;
-        //     int[]random = arrGen(size, "random", 1000);
-        //     int[]sorted = arrGen(size, "sorted", 1000);
-        //     int[]reversed = arrGen(size, "reversed", 1000);
-        //     int[]binary = arrGen(size, "binary", 1000);
-        //     int[]equal = arrGen(size, "equal", 1000);
-        //     sortcheck(random);
-        //     sortcheck(sorted);
-        //     sortcheck(reversed);
-        //     sortcheck(binary);
-        //     sortcheck(equal);
-        // } else {
-        //     int size = Integer.parseInt(args[0]);
-        //     String type = args[1];
-        //     int[]test = arrGen(size, type, 1000);
-        //     if(sortcheck(test)){
-        //         System.out.println("good");
-        //     } else {
-        //         System.out.println("fail");
-        //     }
-        // }
+        if(args[0].equals("auto")){
+            int size = 10000000;
+            int[]random = arrGen(size, "random", 1000);
+            int[]sorted = arrGen(size, "sorted", 1000);
+            int[]reversed = arrGen(size, "reversed", 1000);
+            int[]binary = arrGen(size, "binary", 1000);
+            int[]equal = arrGen(size, "equal", 1000);
+            sortcheck(random);
+            sortcheck(sorted);
+            sortcheck(reversed);
+            sortcheck(binary);
+            sortcheck(equal);
+        } else {
+            int size = Integer.parseInt(args[0]);
+            String type = args[1];
+            int[]test = arrGen(size, type, 1000);
+            if(sortcheck(test)){
+                System.out.println("good");
+            } else {
+                System.out.println("fail");
+            }
+        }
     }
     public static boolean sortcheck(int[] data){
         int [] copy = Arrays.copyOf(data,data.length);
