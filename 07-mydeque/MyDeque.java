@@ -36,7 +36,22 @@ Add (both first and last) will throw: NullPointerException - if the specified el
     */
     public void addFirst(E element) throws NullPointerException{
         if(element == null) throw new NullPointerException("cannot add a null element");
-        
+        if(size == data.length){
+            //resize and add to end. + 1 for resizing a 0 size array.
+            data = resizedArray(this, (this.size() + 1) * 2);
+            size++;
+            start = data.length-1;
+            data[start] = element;
+        //wrap around if no space in data
+        } else if(start == 0){
+            start = data.length-1;
+            size++;
+            data[start] = element;
+        } else {
+            size++;  
+            start--;
+            data[start] = element;
+        }
     }
   
     public void addLast(E element) throws NullPointerException{ 
