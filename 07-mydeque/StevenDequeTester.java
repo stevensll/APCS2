@@ -2,8 +2,10 @@ import java.util.NoSuchElementException;
 
 public class StevenDequeTester {
     public static void main(String[] args) {
-        MyDeque<Integer> zahando = new MyDeque<Integer>(0);
-        
+        MyDeque<Integer> zahando = new MyDeque<Integer>(1);
+        for(int i = 0; i < 10000; i++){
+            zahando.addFirst(i);
+        }
         // try{
         //     zahando.getLast();
         //     System.out.println("did not catch no element error");
@@ -48,6 +50,7 @@ public class StevenDequeTester {
         // }
         // System.out.println(zahando);
         // System.out.println(zahando.getFirst() +" "+ zahando.getLast());
+
     }
 
 }

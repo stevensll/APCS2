@@ -86,19 +86,23 @@ Add (both first and last) will throw: NullPointerException - if the specified el
         }
     }
 
-    public E removeFirst(){
+    public E removeFirst()throws NoSuchElementException{
+        if(size == 0) throw new NoSuchElementException("deque is empty with size 0");
         E temp = data[start];
         data[start] = null;
         size--;
-        start++;
+        if(start+1 == data.length) start = 0;
+        else start++;
         return temp;
     }
 
-    public E removeLast(){
+    public E removeLast()throws NoSuchElementException{
+        if(size == 0) throw new NoSuchElementException("deque is empty with size 0");
         E temp = data[end];
         data[end] = null;
         size--;
-        end--;
+        if(end-1 < 0) end = data.length-1;
+        else end--;
         return temp;
     }
     //Remove/Get (both first and last) will throw: NoSuchElementException - when this deque is empty
@@ -107,6 +111,7 @@ Add (both first and last) will throw: NullPointerException - if the specified el
         if(size == 0) throw new NoSuchElementException("deque is empty with size 0");
         return data[start];
     }
+
     public E getLast() throws NoSuchElementException{ 
         if(size == 0) throw new NoSuchElementException("deque is empty with size 0");
         return data[end];
