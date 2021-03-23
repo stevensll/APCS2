@@ -18,7 +18,9 @@ public class StevenDequeTester {
         // } catch (NoSuchElementException e) {
         //     System.out.println("caught no element error");
         // }
-
+        // zahando.addFirst(3);
+        // System.out.println(zahando);
+        // System.out.println(zahando);
         // for(int i = 0; i < 30; i++){
         //     zahando.addLast(i);
         // }
@@ -32,20 +34,20 @@ public class StevenDequeTester {
         // }
         // System.out.println(zahando);
         // System.out.println(zahando.getFirst() +" "+ zahando.getLast());
-        for(int i = 0; i < 30; i++){
-            zahando.addFirst(i);
-        }
-        System.out.println(zahando);
-        System.out.println(zahando.getFirst() +" "+ zahando.getLast());
-        for(int i = 0; i < 10; i++){
-            zahando.removeLast();
-        } 
-        System.out.println(zahando);
-        for(int i = 0; i < 11; i++){
-            zahando.addFirst(i+100);
-        }
-        System.out.println(zahando);
-        System.out.println(zahando.getFirst() +" "+ zahando.getLast());
+        // for(int i = 0; i < 30; i++){
+        //     zahando.addFirst(i);
+        // }
+        // System.out.println(zahando);
+        // System.out.println(zahando.getFirst() +" "+ zahando.getLast());
+        // for(int i = 0; i < 10; i++){
+        //     zahando.removeLast();
+        // } 
+        // System.out.println(zahando);
+        // for(int i = 0; i < 11; i++){
+        //     zahando.addFirst(i+100);
+        // }
+        // System.out.println(zahando);
+        // System.out.println(zahando.getFirst() +" "+ zahando.getLast());
     }
 
 }

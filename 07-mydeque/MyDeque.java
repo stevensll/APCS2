@@ -14,6 +14,7 @@ public class MyDeque<E>{
     }
 
     public MyDeque(int initialCapacity){  
+        if(initialCapacity < 10) initialCapacity = 10;
         @SuppressWarnings("unchecked")
         E[] d = (E[])new Object[initialCapacity];
         data = d;
@@ -25,8 +26,15 @@ public class MyDeque<E>{
     public int size(){ 
         return size;
     }
-    public String toString(){ 
-        String result = Arrays.toString(data);
+    public String toString(){
+        if(size == 0) return "{}"; 
+        String result ="{";
+        for(int i = 0; i < this.size()-1; i++){
+            if(start+i >= data.length){
+                result+= data[start+i-data.length].toString() + ", ";
+            } else result+= data[start+i].toString()+", ";
+        }
+        result+= data[end].toString()+"}";
         return result;
     }
     /*
@@ -36,7 +44,11 @@ Add (both first and last) will throw: NullPointerException - if the specified el
     */
     public void addFirst(E element) throws NullPointerException{
         if(element == null) throw new NullPointerException("cannot add a null element");
-        if(size == data.length){
+        if(size == 0){
+            end++;
+            size++;
+            data[start] = element;
+        } else if(size == data.length){
             //resize and add to end. + 1 for resizing a 0 size array.
             data = resizedArray(this, (this.size() + 1) * 2);
             size++;
