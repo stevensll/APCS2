@@ -9,19 +9,7 @@ public class Calculator {
              *        Use the string parameter of your exception to indicate what happened.
              */
     public static double eval(String s) throws IllegalArgumentException{
-        if(s.equals("")) throw new IllegalArgumentException("empty input");
-        
-        int totalOperators = 0;
-        int totalOperands = 0;
-        Scanner counter = new Scanner(s);
-        while(counter.hasNext()){
-            if(counter.hasNextInt() || counter.hasNextDouble()) totalOperands++;
-            else totalOperators++;
-            counter.next();
-        }
-        counter.close();
-        if(totalOperands < totalOperators) throw new IllegalArgumentException("input has too few operands");
-        if(totalOperators < 1) throw new IllegalArgumentException("input has zero operators");
+        if(s.equals("")) throw new IllegalArgumentException("input has too few operands");
         
         Scanner iterator = new Scanner(s); 
         Deque<Double> stack = new ArrayDeque<Double>();
@@ -31,7 +19,9 @@ public class Calculator {
                 stack.add(val);
             }
             else{
+                if(stack.size() < 1) throw new IllegalArgumentException("input has too few operands");
                 double o1 = stack.removeLast();
+                if(stack.size() < 1) throw new IllegalArgumentException("input has too few operands");
                 double o2 = stack.removeLast();
                 String operator = iterator.next();
                 if(operator.equals("+")){
@@ -51,6 +41,7 @@ public class Calculator {
         // System.out.println(stack);
         // System.out.println(totalOperands);
         // System.out.println(totalOperators);
+        if(stack.size() > 1) throw new IllegalArgumentException(" too many operands");
         return stack.getLast();
     }
 }
