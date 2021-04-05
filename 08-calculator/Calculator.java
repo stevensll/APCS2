@@ -22,12 +22,35 @@ public class Calculator {
         counter.close();
         if(totalOperands < totalOperators) throw new IllegalArgumentException("input has too few operands");
         if(totalOperators < 1) throw new IllegalArgumentException("input has zero operators");
-
-        System.out.println(totalOperands);
-        System.out.println(totalOperators);
-
-        double result = 3;
-
-        return result;
+        
+        Scanner iterator = new Scanner(s); 
+        Deque<Double> stack = new ArrayDeque<Double>();
+        while(iterator.hasNext()){
+            if(iterator.hasNextDouble()){
+                double val = Double.parseDouble(iterator.next());
+                stack.add(val);
+            }
+            else{
+                double o1 = stack.removeLast();
+                double o2 = stack.removeLast();
+                String operator = iterator.next();
+                if(operator.equals("+")){
+                    stack.add(o2 + o1);
+                } else if(operator.equals("-")){
+                    stack.add(o2-o1);
+                } else if(operator.equals("*")){
+                    stack.add(o2*o1);
+                } else if(operator.equals("/")){
+                    stack.add(o2/o1);
+                } else if(operator.equals("%")){
+                    stack.add(o2%o1);
+                }
+            }
+        }
+        iterator.close();
+        // System.out.println(stack);
+        // System.out.println(totalOperands);
+        // System.out.println(totalOperators);
+        return stack.getLast();
     }
 }
