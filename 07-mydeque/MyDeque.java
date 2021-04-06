@@ -91,7 +91,10 @@ Add (both first and last) will throw: NullPointerException - if the specified el
         E temp = data[start];
         data[start] = null;
         size--;
-        if(start+1 == data.length) start = 0;
+        if(size == 0){
+            start= 0;
+            end = -1;
+        } else if(start+1 == data.length) start = 0;
         else start++;
         return temp;
     }
@@ -101,7 +104,10 @@ Add (both first and last) will throw: NullPointerException - if the specified el
         E temp = data[end];
         data[end] = null;
         size--;
-        if(end-1 < 0) end = data.length-1;
+        if(size == 0){
+            start=0;
+            end = -1;
+        } else if(end-1 < 0) end = data.length-1;
         else end--;
         return temp;
     }
