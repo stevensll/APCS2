@@ -47,6 +47,29 @@ public class BurnTrees{
    *new fires should remain fire, and not spread.
    */
   public void tick(){
+    int startingSize = frontier.size();
+    for(int i = 0; i < startingSize; i++){
+        int[]coordinates = frontier.remove();
+        int x = coordinates[0];
+        int y = coordinates[1];
+        map[x][y] = ASH;
+        if(x + 1 < map[0].length && map[x+1][y] == TREE){
+            map[x+1][y]=FIRE;
+            frontier.addLast(new int[]{x+1,y});
+        }
+        if(y + 1 < map.length && map[x][y+1] == TREE){
+            map[x][y+1]=FIRE;
+            frontier.addLast(new int[]{x,y+1});
+        }
+        if(x - 1 >= 0 && map[x-1][y] == TREE){
+            map[x-1][y]=FIRE;
+            frontier.addLast(new int[]{x-1,y});
+        }
+        if(y - 1 >= 0 && map[x][y-1] == TREE){
+            map[x][y-1]=FIRE;
+            frontier.addLast(new int[]{x,y-1});
+        }
+    }
     ticks++;
     //YOU MUST IMPLEMENT THIS
   }
