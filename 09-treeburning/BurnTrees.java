@@ -50,24 +50,24 @@ public class BurnTrees{
     int startingSize = frontier.size();
     for(int i = 0; i < startingSize; i++){
         int[]coordinates = frontier.remove();
-        int x = coordinates[0];
-        int y = coordinates[1];
-        map[x][y] = ASH;
-        if(x + 1 < map[0].length && map[x+1][y] == TREE){
-            map[x+1][y]=FIRE;
-            frontier.addLast(new int[]{x+1,y});
+        int x = coordinates[1];
+        int y = coordinates[0];
+        map[y][x] = ASH;
+        if(x + 1 < map[0].length && map[y][x+1] == TREE){
+            map[y][x+1]=FIRE;
+            frontier.addLast(new int[]{y,x+1});
         }
-        if(y + 1 < map.length && map[x][y+1] == TREE){
-            map[x][y+1]=FIRE;
-            frontier.addLast(new int[]{x,y+1});
+        if(y + 1 < map.length && map[y+1][x] == TREE){
+            map[y+1][x]=FIRE;
+            frontier.addLast(new int[]{y+1,x});
         }
-        if(x - 1 >= 0 && map[x-1][y] == TREE){
-            map[x-1][y]=FIRE;
-            frontier.addLast(new int[]{x-1,y});
+        if(x - 1 >= 0 && map[y][x-1] == TREE){
+            map[y][x-1]=FIRE;
+            frontier.addLast(new int[]{y,x-1});
         }
-        if(y - 1 >= 0 && map[x][y-1] == TREE){
-            map[x][y-1]=FIRE;
-            frontier.addLast(new int[]{x,y-1});
+        if(y - 1 >= 0 &&  map[y-1][x]== TREE){
+            map[y-1][x]=FIRE;
+            frontier.addLast(new int[]{y-1,x});
         }
     }
     ticks++;
@@ -157,6 +157,12 @@ public class BurnTrees{
     }
     return getTicks();
   }
+  private int solve(){
+      while(!done()){
+          tick();
+      }
+      return getTicks();
+  }
 
 
   public static void main(String[]args)  throws InterruptedException{
@@ -174,9 +180,9 @@ public class BurnTrees{
     }
     BurnTrees b = new BurnTrees(WIDTH,HEIGHT,DENSITY);
 
-
+    // System.out.println(b.solve());
     System.out.println(b.animate(DELAY));//animate all screens and print the final answer
-    //System.out.println(b.outputAll());//print all screens and the final answer
+    // System.out.println(b.outputAll());//print all screens and the final answer
   }
 
 
