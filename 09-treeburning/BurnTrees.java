@@ -174,8 +174,8 @@ public class BurnTrees{
       DELAY = Integer.parseInt(args[3]);
     }
     BurnTrees b = new BurnTrees(WIDTH,HEIGHT,DENSITY);
-    System.out.println(b.run());
-    // System.out.println(b.animate(DELAY));//animate all screens and print the final answer
+    // System.out.println(b.run());
+    System.out.println(b.animate(DELAY));//animate all screens and print the final answer
     // System.out.println(b.outputAll());//print all screens and the final answer
   }
 
