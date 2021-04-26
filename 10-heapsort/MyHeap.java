@@ -32,7 +32,9 @@ public class MyHeap {
    *@param data is the array to be modified
   */
   public static void buildHeap(int[]data){
-
+    for(int i = data.length / 2 - 1; i >=0; i--){
+      pushDown(data, data.length, i);
+    }
   }//We will discuss this today:Before moving onto the next two methods, you must thoughroughly test the pushDown() and buildHeap() commands!
 
 
