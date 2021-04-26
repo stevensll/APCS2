@@ -9,7 +9,7 @@ public class MyHeap {
   *@precondition index is between 0 and size-1 inclusive
   *@precondition size is between 0 and data.length inclusive.
   */
-  public static void pushDown(int[]data, int size, int index){
+  private static void pushDown(int[]data, int size, int index){
     int larger = index;
     int left = index * 2 + 1;
     int right = index * 2 + 2;
