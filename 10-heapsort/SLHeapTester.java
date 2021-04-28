@@ -9,28 +9,26 @@ public class SLHeapTester {
         int[] test4 = new int[]{1};
 
         System.out.println(Arrays.toString(test));
-        // System.out.println(Arrays.toString(test2));
-        // System.out.println(Arrays.toString(test3));
-        // System.out.println(Arrays.toString(test4));
-        // System.out.println(Arrays.toString(emptyArray));
+        System.out.println(Arrays.toString(test2));
+        System.out.println(Arrays.toString(test3));
+        System.out.println(Arrays.toString(test4));
+        System.out.println(Arrays.toString(emptyArray));
 
         // MyHeap.pushDown(test, test.length, 0);
-        MyHeap.buildHeap(test);
-        System.out.println(Arrays.toString(test));
-        MyHeap.remove(test, 7);
-        MyHeap.remove(test, 6);
+        MyHeap.heapsort(test);
+        // System.out.println(Arrays.toString(test));
 
-        // MyHeap.buildHeap(test2);
-        // MyHeap.buildHeap(test3);
-        // MyHeap.buildHeap(test4);
-        // MyHeap.buildHeap(emptyArray);
+        MyHeap.heapsort(test2);
+        MyHeap.heapsort(test3);
+        MyHeap.heapsort(test4);
+        MyHeap.heapsort(emptyArray);
 
 
         System.out.println(Arrays.toString(test));
-        // System.out.println(Arrays.toString(test2));
-        // System.out.println(Arrays.toString(test3));
-        // System.out.println(Arrays.toString(test4));
-        // System.out.println(Arrays.toString(emptyArray));
+        System.out.println(Arrays.toString(test2));
+        System.out.println(Arrays.toString(test3));
+        System.out.println(Arrays.toString(test4));
+        System.out.println(Arrays.toString(emptyArray));
 
     }
 }

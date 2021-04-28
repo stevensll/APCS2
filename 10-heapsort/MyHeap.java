@@ -56,7 +56,7 @@ public class MyHeap {
   public static void heapsort(int[]data){
     buildHeap(data);
     for(int i = 0; i < data.length; i++){
-      remove(data, data.length);
+      remove(data, data.length-i);
     }
   }
 }
