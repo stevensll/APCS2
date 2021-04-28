@@ -43,13 +43,20 @@ public class MyHeap {
   *@precondition: size is between 0 and data.length inclusive.
   */
   public static void remove(int[]data,int size){
-      
+    int root = data[0];
+    data[0] = data[size-1];
+    data[size-1] = root;
+    size--;
+    pushDown(data, size, 0);
   }
 
   /**Sort the provided array
    *@param data is the array to be sorted
   */
   public static void heapsort(int[]data){
-
-      }
+    buildHeap(data);
+    for(int i = 0; i < data.length; i++){
+      remove(data, data.length);
+    }
+  }
 }
