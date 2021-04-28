@@ -31,7 +31,7 @@ public class MyHeap {
   /**Reorder the provided array to be a valid heap.
    *@param data is the array to be modified
   */
-  public static void buildHeap(int[]data){
+  private static void buildHeap(int[]data){
     for(int i = data.length / 2 - 1; i >=0; i--){
       pushDown(data, data.length, i);
     }
@@ -42,7 +42,7 @@ public class MyHeap {
    *Then push the new root down, but not past the index that it swapped with.
   *@precondition: size is between 0 and data.length inclusive.
   */
-  public static void remove(int[]data,int size){
+  private static void remove(int[]data,int size){
     int root = data[0];
     data[0] = data[size-1];
     data[size-1] = root;
