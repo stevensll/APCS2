@@ -3,7 +3,10 @@ public class Cow {
   color c;
   boolean colliding;
   boolean selected;
+  float xmultiplier, ymultiplier;
   Cow(float rad, float x, float y, float dx, float dy) {
+    xmultiplier = 1;
+    ymultiplier = 1;
     radius = rad;
     this.x = x;
     this.y = y;
@@ -19,8 +22,8 @@ public class Cow {
   }
 
   void move() {
-    x += dx;
-    y += dy;
+    x += dx*xmultiplier;
+    y += dy*ymultiplier;
     if (x >= width - radius || x <= radius) dx *= -1;
     if (y >= height - radius || y <= radius) dy *= -1;
   }
@@ -39,10 +42,16 @@ public class Cow {
           ellipse(x-radius*.35, y-radius*.35,radius*.2,radius*.3 );
           ellipse(x+radius*.35, y-radius*.35,radius*.2,radius*.3);
           arc(x,y+radius*.15,radius,radius*.85,0,PI,CHORD);
-          //text("DX:" + dx + "\nDY:" + dy,this.x+radius+5,this.y-10);
-          text("colliding"+colliding,this.x+radius+5,this.y-10);
+          text("DX:" + dx + "\nDY:" + dy,this.x+radius+5,this.y-10);
+          //text("colliding"+colliding,this.x+radius+5,this.y-10);
       }
-   
+   if(this.selected && this.colliding){
+     xmultiplier = 2;
+     ymultiplier = 2;
+   } else {
+     xmultiplier = 1;
+     ymultiplier = 1;
+   }
   }
   private double distance (double x1, double x2, double y1, double y2){
       double xComp = x1-x2;
