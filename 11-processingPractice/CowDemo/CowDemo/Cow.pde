@@ -25,8 +25,13 @@ public class Cow {
     if (y >= height - radius || y <= radius) dy *= -1;
   }
   void display() {
-    stroke(0);
-    fill(c);
+    if(this.colliding){
+      stroke(0);
+      fill(#FF0000,150);      
+    } else {
+      stroke(0,255);
+      fill(c);
+    }
     ellipse(x, y, radius*2, radius*2);
     if(this.selected){ 
           stroke(255);
@@ -34,8 +39,10 @@ public class Cow {
           ellipse(x-radius*.35, y-radius*.35,radius*.2,radius*.3 );
           ellipse(x+radius*.35, y-radius*.35,radius*.2,radius*.3);
           arc(x,y+radius*.15,radius,radius*.85,0,PI,CHORD);
-          text("dx:" + dx + "\ndy:" + dy,this.x+radius+5,this.y-10);
+          //text("DX:" + dx + "\nDY:" + dy,this.x+radius+5,this.y-10);
+          text("colliding"+colliding,this.x+radius+5,this.y-10);
       }
+   
   }
   private double distance (double x1, double x2, double y1, double y2){
       double xComp = x1-x2;
@@ -55,9 +62,12 @@ public class Cow {
 
   void collide(ArrayList<Cow>others){
     for(Cow cow: others){
-      if(distance(this.x,cow.x,this.y,cow.y) <=(this.radius+cow.radius)){
-        colliding = true;
-      } else colliding = false;
+      if(this!=cow){  
+        if(distance(this.x,cow.x,this.y,cow.y) <=(this.radius+cow.radius)){
+          this.colliding = true;
+          cow.colliding = true;
+        } else colliding = false;
+      }
     }
   }
 }
