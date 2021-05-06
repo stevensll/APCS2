@@ -53,13 +53,8 @@ public class Cow {
      ymultiplier = 1;
    }
   }
-  private double distance (double x1, double x2, double y1, double y2){
-      double xComp = x1-x2;
-      double yComp = y1-y2;
-    return Math.sqrt(Math.pow(xComp,2)+Math.pow(yComp,2));
-  }
   void click(){
-    if(distance(this.x,mouseX,this.y,mouseY) <= this.radius){
+    if(dist(this.x,this.y,mouseX,mouseY) <= this.radius){
       //this.radius+=3;
       if(selected){
         selected = false;
@@ -72,7 +67,7 @@ public class Cow {
   void collide(ArrayList<Cow>others){
     for(Cow cow: others){
       if(this!=cow){  
-        if(distance(this.x,cow.x,this.y,cow.y) <=(this.radius+cow.radius)){
+        if(dist(this.x,this.y,cow.x,cow.y) <=(this.radius+cow.radius)){
           this.colliding = true;
           cow.colliding = true;
         } else colliding = false;
