@@ -28,7 +28,14 @@ public class Cow {
     stroke(0);
     fill(c);
     ellipse(x, y, radius*2, radius*2);
-
+    if(this.selected){ 
+          stroke(255);
+          fill(255);
+          ellipse(x-radius*.35, y-radius*.35,radius*.2,radius*.3 );
+          ellipse(x+radius*.35, y-radius*.35,radius*.2,radius*.3);
+          arc(x,y+radius*.15,radius,radius*.85,0,PI,CHORD);
+          text("dx:" + dx + "\ndy:" + dy,this.x+radius+5,this.y-10);
+      }
   }
   private double distance (double x1, double x2, double y1, double y2){
       double xComp = x1-x2;

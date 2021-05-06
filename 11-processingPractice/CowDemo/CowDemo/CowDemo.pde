@@ -1,27 +1,35 @@
 ArrayList<Cow> particles;
+boolean testing_state = false ;
 void setup() {
-  size(1000, 800);
-  particles = new ArrayList<Cow>();
-  for (int i = 0; i < 100; i++)
-    particles.add(new Cow());
+   size(1000, 800);
+  if(!testing_state){
+    particles = new ArrayList<Cow>();
+    for (int i = 0; i < 100; i++)
+      particles.add(new Cow());
+  } else {
+  }
+
 }
 
 void draw() {
   background(200);
-  for (Cow c : particles) {
-    c.move();
-    c.display();
-    //c.collide(particles);
-    if(c.selected){ 
-        stroke(255);
-        ellipse(c.x-55, c.y-5,c.radius*.25,c.radius*.5);
-        fill(0);
-        //System.out.println(""+ c.dx + c.dy);
+  if(!testing_state){
+    for (Cow c : particles) {
+      c.move();
+      c.display();
+      //c.collide(particles);
+      
     }
+    fill(0);
+    textSize(20);
+    text("FPS: "+frameRate+"\nCows: "+particles.size(),0,20);
+  }else {
+    stroke(255);
+    ellipse(height/2,width/2,50,50);
+    stroke(0);
+    ellipse(height/2 -50*.2, width/2 -50*.2, 50*.125, 50*.25);
   }
-  fill(0);
-  textSize(20);
-  text("FPS: "+frameRate+"\nCows: "+particles.size(),0,20);
+ 
 }
 
 void mousePressed() {
