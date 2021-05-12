@@ -4,6 +4,7 @@ public class Cow {
   boolean colliding;
   boolean selected;
   float xmultiplier, ymultiplier;
+  float dmag, heading;
   Cow(float rad, float x, float y, float dx, float dy) {
     xmultiplier = 1;
     ymultiplier = 1;
@@ -13,14 +14,16 @@ public class Cow {
     this.dx = (int)(dx*100)/100.0;
     this.dy = (int)(dy*100)/100.0;
     c = color(random(255),random(255),random(255));
-
   }
   Cow() {
     this(20+(int)(Math.random()*30), width/2, height/2, 
     random(6)-3,
     random(6)-3);
   }
-
+  void updatePose(){
+    dmag = dist(dx,dy,0,0);
+    heading=atan2(dy,dx);
+  }
   void move() {
     x += dx*xmultiplier;
     y += dy*ymultiplier;
@@ -42,7 +45,7 @@ public class Cow {
           ellipse(x-radius*.35, y-radius*.35,radius*.2,radius*.3 );
           ellipse(x+radius*.35, y-radius*.35,radius*.2,radius*.3);
           arc(x,y+radius*.15,radius,radius*.85,0,PI,CHORD);
-          text("DX:" + dx + "\nDY:" + dy,this.x+radius+5,this.y-10);
+          text("DX:" + dx + "\nDY:" + dy + "\nDMag:" + dmag + "\nHeading:" + degrees(heading),this.x+radius+5,this.y-10);
           //text("colliding"+colliding,this.x+radius+5,this.y-10);
       }
    if(this.selected && this.colliding){
@@ -73,5 +76,14 @@ public class Cow {
         } else colliding = false;
       }
     }
+  }
+  void turn(float angle){
+    dx=dmag*cos(-radians(angle) + heading);
+    dy=dmag*sin(-radians(angle) + heading);
+  }
+  void changeSpeed(float dv){
+    dmag+=dv;
+    dx=dmag*cos(heading);
+    dy=dmag*sin(heading);
   }
 }

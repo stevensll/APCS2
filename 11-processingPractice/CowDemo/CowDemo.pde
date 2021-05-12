@@ -18,6 +18,7 @@ void draw() {
       c.move();
       c.display();
       c.collide(particles);
+      c.updatePose();
     }
     fill(0);
     textSize(20);
@@ -52,8 +53,19 @@ void keyPressed() {
   if(key == ' '){
     particles.clear();
   }
-  //Read about keyPressed() in the documentation.
-  //hint:
-  //println(keyCode);
-
+  if(key == 't'){
+    for(Cow c: particles){
+      c.turn(30);
+    }
+  }
+  if(key == 'm'){
+    for(Cow c: particles){
+      c.changeSpeed(-2);
+    }
+  }
+   if(key == 'n'){
+    for(Cow c: particles){
+      c.changeSpeed(2);
+    }
+  }
 }
