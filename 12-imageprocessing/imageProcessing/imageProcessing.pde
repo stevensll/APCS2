@@ -1,11 +1,11 @@
 void setup(){
-
-
-}
-void draw(){
-  size(1450,500);
+  size(1450,1450);
   PImage car = loadImage("redcar.jpg");
-  for(int i = 0; i < 300; i ++){
-    car.i = 255;
-  }
+  PImage output = car.copy();
+  Kernel k = new Kernel( new float[][]    { {-1, -1, -1},
+     {-1, 8, -1},
+   {-1, -1, -1} } );
+  k.apply(car,output);
+  imageMode(CENTER);
+  image(output,725,725);
 }
